@@ -63,9 +63,16 @@ class Lexer:
 
 # token  qui  contient le  type  de  token  et le test original
 class Token:
-    def __init__(self,tokentext,tokentype):
-        self.tokenText = tokentext
-        self.tokentype = tokentype
+    def __init__(self,tokenText,tokenKind):
+        self.text = tokenText
+        self.kind = tokenKind
+
+    @staticmethod
+    def checkifKeyword(tokenText):
+        for kind in TokenType:
+            if kind.name == tokenText.upper() and kind.value >= 100 and kind.value < 200:
+                return kind
+        return None
 
 
 class TokenType(enum.Enum):
